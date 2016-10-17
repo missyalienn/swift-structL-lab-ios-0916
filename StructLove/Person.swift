@@ -7,3 +7,39 @@
 //
 
 import Foundation
+
+struct Person {
+    
+    let firstName: String
+    let lastName: String
+    var home: Coordinate
+    var isHungry: Bool = true
+    
+    
+    init(firstName: String, lastName: String, home: Coordinate) {
+        
+        self.firstName = "John"
+        self.lastName = "Doe"
+        self.home = home
+        
+    }
+    
+    
+    mutating func eatPizza(from service: PizzaDeliveryService ) -> Bool {
+        
+        if self.isHungry == true && service.isInRange(destination: self.home) {
+            self.isHungry = false
+            return true
+        }else{
+            return false
+    }
+    
+    }
+    
+    
+    
+    
+}
+
+
+

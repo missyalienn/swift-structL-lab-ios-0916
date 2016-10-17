@@ -8,10 +8,46 @@
 
 import Foundation
 
+struct Coordinate {
+    
+    var latitude: Double
+    var longitude: Double
+    
+    init(latitude: Double, longitude: Double) {
+        
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    // Computed Properties // 
+    
+    var isInNorthernHemisphere: Bool {
+        return latitude >= 0.0
+    }
+    
+    
+    var isInSouthernHemisphere: Bool {
+        return latitude <= 0.0 }
+  
+    var isInWesternHemisphere: Bool {
+        return  longitude >= 0.0
+    }
+    
+    var isInEasternHemisphere: Bool {
+         return longitude <= 0.0
+    }
 
+    
 
-
-
+    func distance(to coordinate: Coordinate) -> Double {
+        var distance: Double
+        distance = acos(sin(self.latitude.radians) * sin(coordinate.latitude.radians) + cos(self.latitude.radians) * cos(coordinate.latitude.radians) * cos(self.longitude-coordinate.longitude.radians)) * (6371000 / 1000)
+        
+        return distance
+    }
+    
+}
+    
 
 // Any double type has now the radians computed property available to it thanks to this extension.
 
